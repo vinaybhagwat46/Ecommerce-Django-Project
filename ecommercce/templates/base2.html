@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Shop Homepage - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bmin.css'%}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/homepage.css'%}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  {% include 'navBar.html' %}
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      {% include 'sideBar.html' %}
+
+      <!-- /.col-lg-3 -->
+     
+
+      <div class="col-lg-9">
+        <br><br>
+        <!--Search product tab-->
+        <form method="POST">
+            {% csrf_token %}
+            <textarea cols="80" rows="2" name='sp'></textarea>
+            <input type="submit" value="Search">
+        </form>
+        <br><br>
+
+        <div class="row">
+          {% for i in plist %}
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">{{i.pname}}</a>
+                </h4>
+                <h5>{{i.price}}</h5>
+                <p class="card-text">{{i.description}}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+
+          
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  {% include 'footer.html' %}
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'js/bmin.js'%}"></script>
+  <script src="{% static 'js/min.js'%}"></script>
+
+</body>
+
+</html>
